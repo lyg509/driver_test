@@ -19,7 +19,7 @@ jobs:
 
       # Flutter Install clone run
       - name: Install Flutter
-        run: https://github.com/lyg509/driver_test.git
+        run: git clone https://github.com/flutter/flutter.git
 
       # PATH 
       - name: Add path
