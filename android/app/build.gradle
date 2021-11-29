@@ -23,7 +23,23 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: "com.github.triplet.play"
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+def keystorePropertiesFile = rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+signingConfigs {
+    // 先ほど仕込んだ keystoreProperties にいろいろ情報がはいっている
+    // それを取り出して代入する
+    release {
+        keyAlias keystoreProperties['keyAlias']
+        keyPassword keystoreProperties['keyPassword']
+        storeFile rootProject.file(keystoreProperties['storeFile'])
+        storePassword keystoreProperties['storePassword']
+    }
+}
 
 android {
     compileSdkVersion 31
@@ -44,9 +60,13 @@ android {
 
     buildTypes {
          release {
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
 
         }
+    }
+    play {
+        serviceAccountCredentials = rootProject.file (keystoreProperties['serviceAccountFile']) // jsonのパスを設定
+        // ここにはいろいろオプションを追加できる
     }
 }
 
