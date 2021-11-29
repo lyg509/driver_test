@@ -53,9 +53,10 @@ jobs:
       - name: Building Android AppBundle
         run: flutter build appbundle --build-number ${GITHUB_RUN_NUMBER} # build-number 에는 run_number 넘겨준다
         # ToDo: version-number 와 build-number 외부파일을 참조
-
+      
       # gradle-play-publisher 업로드
       # https://github.com/Triple-T/gradle-play-publisher 외부패키지를 활용
       - name: Upload to GooglePlayStore
         run: ./gradlew publishReleaseBundle
         working-directory: ./android
+        #test
