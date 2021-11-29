@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "340557526010",
+    "project_id": "drivertest-97723",
+    "storage_bucket": "drivertest-97723.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340557526010:android:a6d8c9eab192fdbe84aa43",
+        "android_client_info": {
+          "package_name": "com.lyg509.memo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340557526010-e3vnd0p3p1vj3tlm020qig73nthbfrah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lyg509.memo",
+            "certificate_hash": "561f1436211d874f92a3083ba90189b0cb636685"
+          }
+        },
+        {
+          "client_id": "340557526010-g86ackkpsd0ad09cgk2iipeujsa3c02m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrNA-4FTWwPgJQVtzhDYM9dwIpttp6d9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340557526010-g86ackkpsd0ad09cgk2iipeujsa3c02m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
