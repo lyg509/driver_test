@@ -6,14 +6,14 @@ import 'package:phone_login/models/note_model.dart';
 class DatabaseHelper{
   static final DatabaseHelper instance = DatabaseHelper._instance();
 
-  static Database _db = null;
+  static Database? _db = null;
 
   DatabaseHelper._instance();
 
   String noteTable = 'note_table';
   String colId = 'id';
   String colTitle = 'title';
-  String colDate = 'date';
+  String colDate = 'data';
   String colPriority = 'priority';
   String colStatus = 'status';
 
@@ -25,9 +25,9 @@ class DatabaseHelper{
 
   * */
 
-  Future<Database> get db async{
+  Future<Database?> get db async{
     if(_db == null){
-    _db = await _initDb();
+      _db = await _initDb();
     }
     return _db;
   }
@@ -42,15 +42,15 @@ class DatabaseHelper{
   }
 
   void _createDb(Database db, int version) async{
-      await db.execute(
-          'CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, $colDate TEXT, $colPriority TEXT, $colStatus INTEGER )'
-      );
-    }
+    await db.execute(
+        'CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOiNCREMENT, $colTitle TEXT, $colDate TEXT, $colPriority TEXT, $colStatus INTEGER )'
+    );
+  }
 
   Future<List<Map<String, dynamic>>> getNoteMapList() async{
-      Database db = await this.db;
-      final List<Map<String, dynamic>> result = await db.query(noteTable);
-      return result;
+    Database? db = await this.db;
+    final List<Map<String, dynamic>> result = await db!.query(noteTable);
+    return result;
   }
 
   Future<List<Note>> getNoteList() async{
@@ -62,13 +62,13 @@ class DatabaseHelper{
       noteList.add(Note.fromMap(noteMap));
 
     });
-    noteList.sort((noteA, noteB) => noteA.date.compareTo(noteB.date));
+    noteList.sort((noteA, noteB) => noteA.date!.compareTo(noteB.date!));
     return noteList;
   }
 
   Future<int> insertNote(Note note) async {
-    Database db = await this.db;
-    final int result = await db.insert(
+    Database? db = await this.db;
+    final int result = await db!.insert(
       noteTable,
       note.toMap(),
 
@@ -77,8 +77,8 @@ class DatabaseHelper{
   }
 
   Future<int> updateNote(Note note) async {
-    Database db = await this.db;
-    final int result = await db.update(
+    Database? db = await this.db;
+    final int result = await db!.update(
       noteTable,
       note.toMap(),
       where: '$colId = ?',
@@ -89,8 +89,8 @@ class DatabaseHelper{
 
 
   Future<int> deleteNote(int id) async {
-    Database db = await this.db;
-    final int result = await db.delete(
+    Database? db = await this.db;
+    final int result = await db!.delete(
       noteTable,
       where: '$colId = ?',
       whereArgs: [id],
