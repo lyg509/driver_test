@@ -5,8 +5,8 @@ import 'package:phone_login/models/note_model.dart';
 import 'package:phone_login/screens/home_screen.dart';
 
 class AddNoteScreen extends StatefulWidget {
-  late final Note? note;
-  late final Function? updateNoteList;
+ final Note  note;
+ final Function  updateNoteList;
 
 
   AddNoteScreen({this.note, this.updateNoteList});
@@ -34,10 +34,10 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
   void initState() {
     super.initState();
 
-    if(widget.note != null){
-      _title = widget.note!.title!;
-      _date = widget.note!.date!;
-      _priority = widget.note!.priority!;
+    if(widget.note  != null){
+      _title = widget.note .title ;
+      _date = widget.note .date ;
+      _priority = widget.note .priority ;
 
       setState(() {
         btnText = "Update Note";
@@ -63,8 +63,8 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
   }
 
   _submit(){
-    if(_formKey.currentState!.validate()){
-      _formKey.currentState!.save();
+    if(_formKey.currentState .validate()){
+      _formKey.currentState .save();
       print('$_title, $_date, $_priority');
 
       Note note = Note(title: _title, date: _date, priority: _priority);
@@ -80,8 +80,8 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
         );
       }
       else{
-            note.id = widget.note!.id;
-            note.status = widget.note!.status;
+            note.id = widget.note .id;
+            note.status = widget.note .status;
             DatabaseHelper.instance.updateNote(note);
 
             Navigator.pushReplacement(
@@ -92,19 +92,19 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
             );
       }
 
-      widget.updateNoteList!();
+      widget.updateNoteList ();
     }
 
   }
 
   _handleDatePicker() async{
-    final DateTime? date = await showDatePicker(
+    final DateTime  date = await showDatePicker(
         context: context,
         initialDate: _date,
         firstDate: DateTime(2000),
         lastDate: DateTime(2100)
     );
-    if(date != null && date != _date){
+    if(date  != null && date  != _date){
       setState(() {
          _date = date;
 
@@ -114,14 +114,14 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
   }
 
   _delete(){
-  DatabaseHelper.instance.deleteNote(widget.note!.id!);
+  DatabaseHelper.instance.deleteNote(widget.note .id );
   Navigator.pushReplacement(
   context,
   MaterialPageRoute(
   builder: (_)=> HomeScreen(),
   ),
   );
-  widget.updateNoteList!();
+  widget.updateNoteList ();
 }
 
 
@@ -173,8 +173,8 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                                 )
                               ),
                               validator: (input) =>
-                              input!.trim().isEmpty ? 'Please enter a note title' : null,
-                               onSaved: (input) => _title = input!,
+                              input .trim().isEmpty  ? 'Please enter a note title' : null,
+                               onSaved: (input) => _title = input ,
                               initialValue: _title,
                             ),
                           ),
@@ -224,7 +224,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
-                          validator: (input) => _priority == null ? 'Please select a priority level' : null,
+                          validator: (input) => _priority == null  ? 'Please select a priority level' : null,
                           onChanged: (value){
                             setState(() {
                               _priority = value.toString();
@@ -253,7 +253,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                         ),
 
                       ),
-                      widget.note != null ? Container(
+                      widget.note  != null ?  Container(
                         margin: EdgeInsets.symmetric(vertical: 20.0),
                         height: 60.0,
                         width: double.infinity,

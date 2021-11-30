@@ -1,9 +1,9 @@
 class Note{
-  int? id;
-  String? title;
-  DateTime? date;
-  String? priority;
-  int? status;
+  int  id;
+  String  title;
+  DateTime  date;
+  String  priority;
+  int  status;
 
   Note({this.title,this.date, this.priority, this.status});
 
@@ -12,7 +12,7 @@ class Note{
   Map<String, dynamic> toMap(){
     final map = Map<String, dynamic>();
     map['title'] = title;
-    map['date'] = date!.toIso8601String();
+    map['date'] = date.toIso8601String();
     map['priority'] = priority;
     map['status'] = status;
     return map;

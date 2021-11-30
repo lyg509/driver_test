@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Future<List<Note>> _noteList;
+   Future<List<Note>> _noteList;
   final DateFormat _dateFormatter = DateFormat('MMM dd, yyyy');
 
   DatabaseHelper _databaseHelper = DatabaseHelper.instance;
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children:[
           ListTile(
             title: Text(
-              note.title!,
+              note.title,
               style: TextStyle(
                   fontSize: 18.0,
                   color: Colors.black,
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       : TextDecoration.lineThrough),
             ),
             subtitle: Text(
-              '${_dateFormatter.format(note.date!)}- ${note.priority}',
+              '${_dateFormatter.format(note.date)}- ${note.priority}',
               style: TextStyle(
                   fontSize: 15.0,
                   color: Colors.white,
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             trailing: Checkbox(
               onChanged: (value) {
-                note.status = value! ? 1 : 0;
+                note.status = value ? 1 : 0;
                 DatabaseHelper.instance.updateNote(note);
                 _updateNoteList();
                 Navigator.pushReplacement(
@@ -105,10 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CircularProgressIndicator(),
               );
             }
-            final int completeNoteCount = snapshot.data!.where((Note note) => note.status == 1).toList().length;
+            final int completeNoteCount = snapshot.data.where((Note note) => note.status == 1).toList().length;
             return ListView.builder(
                 padding: EdgeInsets.symmetric(vertical: 80.0),
-                itemCount: int.parse(snapshot.data!.length.toString()) + 1,
+                itemCount: int.parse(snapshot.data.length.toString()) + 1,
                 itemBuilder: (BuildContext context, int index) {
                   if (index == 0) {
                     return Padding(
@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     );
                   }
-                  return _buildNote(snapshot.data![index - 1]);
+                  return _buildNote(snapshot.data[index - 1]);
                 });
           }),
     );
