@@ -1,3 +1,4 @@
+[![build and test app](https://github.com/lyg509/driver_test/actions/workflows/main.yml/badge.svg)](https://github.com/lyg509/driver_test/actions/workflows/main.yml)
 # phone_login
 
 A new Flutter project.
