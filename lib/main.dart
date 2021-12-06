@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:phone_login/test/app.dart';
-import 'package:phone_login/test_shop/splashScreen/spalsh_screen.dart';
+import 'package:phone_login/screens/home_screen.dart';
+
 
 
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
 
       ),
-      home:  MySplashScreen(),
+      home:  HomeScreen(),
     );
   }
 }
