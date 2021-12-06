@@ -43,7 +43,7 @@ jobs:
         # > android/key.properties 로 덮어씌우고
         # >> android/key.properties 추가
         run: |
-          echo 'storeFile=android/key.jks' > android/key.properties
+          echo 'storeFile=key.jks' > android/key.properties
           echo 'serviceAccountFile=service-account-ke.json' >> android/key.properties
           echo 'storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}' >> android/key.properties
           echo 'keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}' >> android/key.properties
