@@ -104,6 +104,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
         firstDate: DateTime(2000),
         lastDate: DateTime(2100)
     );
+    
     if(date != null && date != _date){
       setState(() {
         _date = date;

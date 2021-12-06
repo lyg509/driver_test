@@ -10,7 +10,7 @@ class Note{
   Note.withId({this.id,this.title,  this.date, this.priority, this.status});
 
   Map<String, dynamic> toMap(){
-    final map = Map<String, dynamic>();
+    final map = <String, dynamic>{};
     map['title'] = title;
     map['date'] = date!.toIso8601String();
     map['priority'] = priority;

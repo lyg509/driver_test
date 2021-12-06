@@ -23,34 +23,35 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('login demo'),
+    return  Scaffold(
+      appBar:  AppBar(
+        title:  Text('login demo'),
       ),
-      body: new Container(
+      body:  Container(
         padding: EdgeInsets.all(16),
-        child: new Form(
+        child:  Form(
           key: formKey,
-          child: new Column(
+          child:  Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              new TextFormField(
-                decoration: new InputDecoration(labelText: 'Email'),
+               TextFormField(
+                decoration:  InputDecoration(labelText: 'Email'),
                 validator: (value) =>
                 value!.isEmpty ? 'Email can\'t be empty' : null,
                 onSaved: (value) => _email = value!,
               ),
-              new TextFormField(
+               TextFormField(
                 obscureText: true,
-                decoration: new InputDecoration(labelText: 'Password'),
+                decoration:  InputDecoration(labelText: 'Password'),
                 validator: (value) =>
                 value!.isEmpty ? 'Password can\'t be empty' : null,
                 onSaved: (value) => _password = value!,
               ),
-              new RaisedButton(
-                child: new Text(
+               // ignore: deprecated_member_use
+               RaisedButton(
+                child:  Text(
                   'Login',
-                  style: new TextStyle(fontSize: 20.0),
+                  style:  TextStyle(fontSize: 20.0),
                 ),
                 onPressed: validateAndSave,
               ),
