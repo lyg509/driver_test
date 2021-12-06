@@ -5,7 +5,7 @@ import 'package:phone_login/test_shop/splashScreen/spalsh_screen.dart';
 
 
 
-
+//test
 Future<void>  main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
