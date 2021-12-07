@@ -25,7 +25,7 @@ dependencies:
   pinput: ^1.2.0
   intl: ^0.17.0
   sqflite: ^2.0.0+4
-  path_provider: ^2.0.7
+  path_provider:
 
   #icon of google_fonts:
   font_awesome_flutter: ^8.10.0
