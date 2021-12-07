@@ -36,7 +36,7 @@ dependencies:
   firebase_core: ^1.10.0
 
   #image_picker:
-  image_picker: ^0.8.4+4
+  image_picker:
 
   #geolocator:
   geolocator: ^8.0.0
