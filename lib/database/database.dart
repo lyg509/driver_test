@@ -6,7 +6,7 @@ import 'package:phone_login/models/note_model.dart';
 class DatabaseHelper{
   static final DatabaseHelper instance = DatabaseHelper._instance();
 
-  static Database? _db = null;
+  static Database? _db;
 
   DatabaseHelper._instance();
 
@@ -26,15 +26,13 @@ class DatabaseHelper{
   * */
 
   Future<Database?> get db async{
-    if(_db == null){
-      _db = await _initDb();
-    }
+    _db ??= await _initDb();
     return _db;
   }
   Future<Database> _initDb() async{
 
-    Directory dir = await getApplicationDocumentsDirectory();
-    String path = dir.path + 'todo_list.db';
+    var dir = await getApplicationDocumentsDirectory();
+    var path = dir.path + 'todo_list.db';
     final todoListDB = await openDatabase(
         path, version: 1, onCreate: _createDb
     );
@@ -48,15 +46,15 @@ class DatabaseHelper{
   }
 
   Future<List<Map<String, dynamic>>> getNoteMapList() async{
-    Database? db = await this.db;
+    var db = await this.db;
     final List<Map<String, dynamic>> result = await db!.query(noteTable);
     return result;
   }
 
   Future<List<Note>> getNoteList() async{
-    final List<Map<String, dynamic>> noteMapList = await getNoteMapList();
+    final noteMapList = await getNoteMapList();
 
-    final List<Note> noteList = [];
+    final noteList = <Note>[];
 
     noteMapList.forEach((noteMap) {
       noteList.add(Note.fromMap(noteMap));
@@ -67,8 +65,8 @@ class DatabaseHelper{
   }
 
   Future<int> insertNote(Note note) async {
-    Database? db = await this.db;
-    final int result = await db!.insert(
+    var db = await this.db;
+    final result = await db!.insert(
       noteTable,
       note.toMap(),
 
@@ -77,8 +75,8 @@ class DatabaseHelper{
   }
 
   Future<int> updateNote(Note note) async {
-    Database? db = await this.db;
-    final int result = await db!.update(
+    var db = await this.db;
+    final result = await db!.update(
       noteTable,
       note.toMap(),
       where: '$colId = ?',
@@ -89,8 +87,8 @@ class DatabaseHelper{
 
 
   Future<int> deleteNote(int id) async {
-    Database? db = await this.db;
-    final int result = await db!.delete(
+    var db = await this.db;
+    final result = await db!.delete(
       noteTable,
       where: '$colId = ?',
       whereArgs: [id],

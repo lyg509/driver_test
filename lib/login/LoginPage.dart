@@ -6,7 +6,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final formKey = new GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   late String _email;
   late String _password;
@@ -49,11 +49,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
                // ignore: deprecated_member_use
                RaisedButton(
+                onPressed: validateAndSave,
                 child:  Text(
                   'Login',
                   style:  TextStyle(fontSize: 20.0),
                 ),
-                onPressed: validateAndSave,
               ),
             ],
           ),

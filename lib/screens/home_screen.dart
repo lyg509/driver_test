@@ -15,7 +15,6 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<List<Note>> _noteList;
   final DateFormat _dateFormatter = DateFormat('MMM dd, yyyy');
 
-  DatabaseHelper _databaseHelper = DatabaseHelper.instance;
 
   @override
   void initState() {
@@ -23,8 +22,9 @@ class _HomeScreenState extends State<HomeScreen> {
     _updateNoteList();
   }
 
-  _updateNoteList() {
+  Function? _updateNoteList () {
     _noteList = DatabaseHelper.instance.getNoteList();
+
   }
 
   Widget _buildNote(Note note) {

@@ -18,13 +18,13 @@ class AddNoteScreen extends StatefulWidget {
 class _AddNoteScreenState extends State<AddNoteScreen> {
 
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _dateController =TextEditingController();
+  final TextEditingController _dateController =TextEditingController();
 
   final DateFormat _dateFormatter = DateFormat('MMM dd, yyyy');
   final List<String> _priorities = ['Low', 'Medium', 'High'];
 
   String _title = '';
-  String _priority = 'Low';
+  String? _priority = 'Low';
   String btnText = "Add Note";
   String titleText = "Add Note";
   DateTime _date = DateTime.now();
@@ -62,12 +62,12 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
     super.dispose();
   }
 
-  _submit(){
+  void _submit(){
     if(_formKey.currentState!.validate()){
       _formKey.currentState!.save();
       print('$_title, $_date, $_priority');
 
-      Note note = Note(title: _title, date: _date, priority: _priority);
+      var note = Note(title: _title, date: _date, priority: _priority);
 
       if(widget.note == null){
         note.status = 0;
@@ -97,14 +97,14 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
 
   }
 
-  _handlerDatePicker() async{
-    final DateTime? date = await showDatePicker(
+/*  void _handlerDatePicker() async{
+    final date = await showDatePicker(
         context: context,
         initialDate: _date,
         firstDate: DateTime(2000),
         lastDate: DateTime(2100)
     );
-    
+
     if(date != null && date != _date){
       setState(() {
         _date = date;
@@ -112,9 +112,9 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
       });
       _dateController.text = _dateFormatter.format(date);
     }
-  }
+  }*/
 
-  _delete(){
+  void _delete(){
     DatabaseHelper.instance.deleteNote(widget.note!.id!);
     Navigator.pushReplacement(
       context,
@@ -242,13 +242,13 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
 
                         ),
                         child: ElevatedButton(
+                          onPressed: _submit,
                           child: Text(
                             btnText,
                             style: TextStyle(
                               fontSize: 20.0,
                             ),
                           ),
-                          onPressed: _submit,
                         ),
 
                       ),
@@ -262,6 +262,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
 
                         ),
                         child: ElevatedButton(
+                          onPressed: _delete,
                           child: Text(
                             'Delete Note',
                             style: TextStyle(
@@ -269,7 +270,6 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                               fontSize:20.0,
                             ),
                           ),
-                          onPressed: _delete,
                         ),
                       ): SizedBox.shrink(),
 
